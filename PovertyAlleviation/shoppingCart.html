@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>购物车哇</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+		<script>
+			window.onload = function(){
+				let productArr = document.getElementsByClassName("cart_list_td");
+				let proListLen = document.getElementById("proListLen");
+				proListLen.innerHTML = productArr.length;
+				let sumPrice = 0;
+				for(let i = 0; i<productArr.length; i++){
+					
+					let price = productArr[i].getElementsByClassName("col05")[0].innerHTML;
+					let num = productArr[i].getElementsByClassName("num_show")[0].value;
+					let itemPrice = parseFloat(price) * parseFloat(num);
+					productArr[i].getElementsByClassName("col07")[0].innerHTML = itemPrice + "元";
+					sumPrice += parseFloat(itemPrice);
+					let add = productArr[i].getElementsByClassName("add")[0];
+					add.onclick = function(){
+						num++;
+					}
+					
+				}
+				let sumPriceObj = document.getElementById("sumPriceObj");
+				sumPriceObj.innerHTML = parseFloat(sumPrice);
+				
+			}
+		</script>
+	</head>
+	<body style="background-color: #FFFFFF;">
+		<!-- 顶部导航栏 -->
+		<div class="top-bar">
+			<div class="content">
+				<!-- 左边导航栏 -->
+				<div class="top-bar-left">
+					<div class="toplogin-logo"><img src="./img/toplogin.png"></div>
+					<div class="login top-bar-item ">请登录</div>
+					<div class="register top-bar-item">注册</div>
+				</div>
+				<!-- 右边导航栏 -->
+				<div class="top-bar-right">
+					<div class="home top-bar-item">首页</div>
+					<div class="shopCart top-bar-item">购物车</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 搜索框模块 -->
+		<div class="middle-bar">
+			<div class="content">
+				<div class="logo">
+					<img src="./img/home/logo.png" alt="">
+					<div class="name">alilala</div>
+				</div>
+		
+				<div class="search-box ">
+					<div class="search-box-left">
+						<img src="./img/home/search.png" alt="">
+						<input type="text" placeholder="请输入产品名称" class="search-box-input">
+					</div>
+					<div class="search-btn">搜索</div>
+				</div>
+			</div>
+		</div>
+		<!-- 购物车内商品 -->	
+		<div class="container" style="height: 30px;">全部商品&nbsp;<span style="color: #E35114;" id="proListLen"></span>&nbsp;件</div>	
+		<ul class="cart_list_th container">
+				<li class="col01">商品名称</li>
+				<li class="col02">商品单位</li>
+				<li class="col03">商品价格</li>
+				<li class="col04">数量</li>
+				<li class="col05">小计</li>
+				<li class="col06">操作</li>
+			</ul>
+		<ul class="cart_list_td container">
+			<li class="col01"><input type="checkbox" name="" checked></li>
+			<li class="col02"><img src="./img/product/shanxi3/greentea.jpg"></li>
+			<li class="col03">绿茶<br><em>25.8元/500g</em></li>
+			<li class="col04">500g</li>
+			<li class="col05">25.81元</li>
+			<li class="col06">
+				<div class="num_add">
+					<a href="javascript:;" class="add fl">+</a>
+					<input type="text" class="num_show fl" value="2">	
+					<a href="javascript:;" class="minus fl">-</a>	
+				</div>
+			</li>
+			<li class="col07">25.80元</li>
+			<li class="col08"><a href="javascript:;">删除</a></li>
+		</ul>
+	
+		<ul class="cart_list_td container">
+			<li class="col01"><input type="checkbox" name="" checked></li>
+			<li class="col02"><img src="./img/product/shanxi3/greentea1.jpg"></li>
+			<li class="col03">红茶<br><em>16.80元/500g</em></li>
+			<li class="col04">500g</li>
+			<li class="col05">16.80元</li>
+			<li class="col06">
+				<div class="num_add">
+					<a href="javascript:;" class="add fl">+</a>
+					<input type="text" class="num_show fl" value="1">	
+					<a href="javascript:;" class="minus fl">-</a>	
+				</div>
+			</li>
+			<li class="col07">16.80元</li>
+			<li class="col08"><a href="javascript:;">删除</a></li>
+		</ul>
+	
+		<ul class="cart_list_td container">
+			<li class="col01"><input type="checkbox" name="" checked></li>
+			<li class="col02"><img src="./img/product/shanxi3/greentea1.jpg"></li>
+			<li class="col03">红茶<br><em>16.80元/500g</em></li>
+			<li class="col04">500g</li>
+			<li class="col05">16.80元</li>
+			<li class="col06">
+				<div class="num_add">
+					<a href="javascript:;" class="add fl">+</a>
+					<input type="text" class="num_show fl" value="1">	
+					<a href="javascript:;" class="minus fl">-</a>	
+				</div>
+			</li>
+			<li class="col07">16.80元</li>
+			<li class="col08"><a href="javascript:;">删除</a></li>
+		</ul>
+			
+		<ul class="settlements container">
+			<li class="col01"><input type="checkbox" name="" checked=""></li>
+			<li class="col02">全选</li>
+			<li class="col03">合计(不含运费)：<span>¥</span><em id="sumPriceObj">42.60</em><br>共计<b>2</b>件商品</li>
+			<li class="col04"><a href="place_order.html">去结算</a></li>
+		</ul>
+	
+		<div class="footer">
+				<div class="foot_link">
+					<a href="#">关于我们</a>
+					<span>|</span>
+					<a href="#">联系我们</a>
+					<span>|</span>
+					<a href="#">招聘人才</a>
+					<span>|</span>
+					<a href="#">友情链接</a>		
+				</div>
+				<p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
+				<p>电话：010-****888    京ICP备*******8号</p>
+			</div>
+			
+		
+	</body>
+</html>

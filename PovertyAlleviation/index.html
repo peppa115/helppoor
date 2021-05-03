@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>买买买</title>
+		<link rel="stylesheet" type="text/css" href="./css/main.css" />
+		<script type="text/javascript">
+			window.onload = function(){
+				let smallTitle = document.getElementById("smallTitleBar");
+				let sTitleArr = smallTitle.getElementsByTagName('span');
+				let sortContent = document.getElementById('sortContent');
+				//console.log(sTitleArr.length);
+				//排行榜切换tab
+				for(let i = 0;i<sTitleArr.length; i++){
+					sTitleArr[i].onclick = function(){
+						sortContent.style["left"] = -i * 1100 + "px";
+						setStyle(i);
+					}
+				}
+				function setStyle(index){
+					for(let i = 0;i<sTitleArr.length; i++){
+						sTitleArr[i].parentNode.classList.remove("small-title-item");
+						sTitleArr[i].parentNode.classList.add("unfocus");
+					}
+					sTitleArr[index].parentNode.classList.add("small-title-item");
+				}
+				//广播栏自动滚动播放
+				
+				function move(obj, attr, target, speed, callback) {
+					clearInterval(obj.timer);
+					var current = parseInt(getStyle(obj, attr));
+					if(current > target) {
+						speed = -speed;
+					}
+					obj.timer = setInterval(function() {
+						var oldValue = parseInt(getStyle(obj, attr));
+						var newValue = oldValue + speed;
+						if((speed < 0 && newValue < target) || (speed > 0 && newValue > target)) {
+							newValue = target;
+						}
+						obj.style[attr] = newValue + "px";
+						if(newValue == target) {
+							clearInterval(obj.timer);
+							callback && callback();
+							
+						}
+					}, 50);
+				}
+				
+				function getStyle(obj, name) {
+				
+					if(window.getComputedStyle) {
+						//正常浏览器的方式，具有getComputedStyle()方法
+						return getComputedStyle(obj, null)[name];
+					} else {
+						//IE8的方式，没有getComputedStyle()方法
+						return obj.currentStyle[name];
+					}
+				
+				}
+				
+				let broList = document.getElementById("broList");
+				
+				
+				function autoChange(){
+					let len = broList.length;
+					var index = 0;
+					
+					timer = setInterval(function(){
+						
+						index = ++index % len;
+						console.log(len);
+						move(broList,"top",-index * 60,-5,function(){
+							
+						});
+						
+					},2500)	
+				}
+				autoChange();
+			}
+		</script>
+	</head>
+	<body>
+
+		<!-- 顶部导航栏 -->
+		<div class="top-bar ">
+			<div class="content">
+				<!-- 左边导航栏 -->
+				<div class="top-bar-left">
+					<div class="toplogin-logo"><img src="./img/toplogin.png"></div>
+					<div class="login top-bar-item ">请登录</div>
+					<div class="register top-bar-item">注册</div>
+				</div>
+				<!-- 右边导航栏 -->
+				<div class="top-bar-right">
+					<div class="home top-bar-item">首页</div>
+					<div class="shopCart top-bar-item">购物车</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 搜索框模块 -->
+		<div class="middle-bar container">
+			<div class="content">
+				<div class="logo">
+					<img src="./img/home/logo.png" alt="">
+					<div class="name">alilala</div>
+				</div>
+
+				<div class="search-box ">
+					<div class="search-box-left">
+						<img src="./img/home/search.png" alt="">
+						<input type="text" placeholder="请输入产品名称" class="search-box-input">
+					</div>
+					<div class="search-btn">搜索</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 扶贫数据概览模块 -->
+		<div class="show-data-message ">
+			<!-- 背景图片 -->
+			<img src="img/home/bgImg4.png">
+			<!-- 数据部分 -->
+			<div class="data-up">
+				<div class="font-big" style="font-size: 42px;">消费扶贫好成绩</div>
+				<div class="font-small">achievement</div>
+			</div>
+			<!-- <div class="data-down">
+				<div class="data">
+					<div class="font-big">2967个</div>
+					<div class="font-small">县</div>
+				</div>
+				<div class="data">
+					<div class="font-big">54283家</div>
+					<div class="font-small">生产单位</div>
+				</div>
+				<div class="data">
+					<div class="font-big">220783款</div>
+					<div class="font-small">扶贫产品</div>
+				</div>
+				<div class="data">
+					<div class="font-big">15462亿</div>
+					<div class="font-small">商品价值量</div>
+				</div>
+			</div>
+ -->
+		</div>
+
+		<!-- 广播小栏 -->
+		<div class="broadcast container">
+			<img src="./img/home/broadcast.png" alt="">
+			<ul class="broadcast-list" id="broList">
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第十四批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第十三批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第十二批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+			</ul>
+			<div class="more">更多</div>
+
+		</div>
+
+		<!-- 华北地区 -->
+		<div class="key-areas container">
+			<!-- 显示片区 -->
+			<div class="left-title">
+				<!-- <img src="./img/home/huabei.jpg" alt=""> -->
+				<div class="upper">
+					华北地区
+				</div>
+			</div>
+			<!-- 地方馆 -->
+			<div class="area">
+				<div class="img"><img src="./img/key_area/hebei.png" alt="图片"></div>
+				<div class="name">河北馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/shanxi.png" alt="图片"></div>
+				<div class="name">山西馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/neimeng.png" alt="图片"></div>
+				<div class="name">内蒙古馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<!-- <div class="area">
+				<div class="img"><img src="./img/area/guangxi.png" alt="图片"></div>
+				<div class="name">京津馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div> -->
+
+
+		</div>
+		
+		<!-- 华中地区 -->
+		<div class="key-areas container">
+			<!-- 显示片区 -->
+			<div class="left-title">
+				<!-- <img src="./img/home/huazhong.jpg" alt=""> -->
+				<div class="upper">
+					华中地区
+				</div>
+			</div>
+			<!-- 地方馆 -->
+
+			<div class="area">
+				<div class="img"><img src="./img/key_area/hubei.png" alt="图片"></div>
+				<div class="name">湖北馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/hunan.png" alt="图片"></div>
+				<div class="name">湖南馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/henan.png" alt="图片"></div>
+				<div class="name">河南馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/jiangxi.png" alt="图片"></div>
+				<div class="name">江西馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+
+
+		</div>
+
+		<!-- 华东地区 -->
+		<div class="key-areas container">
+			<!-- 显示片区 -->
+			<div class="left-title">
+				<!-- <img src="./img/home/huadong.jpg" alt=""> -->
+				<div class="upper">
+					华东地区
+				</div>
+			</div>
+			<!-- 地方馆 -->
+
+			<div class="area">
+				<div class="img"><img src="./img/key_area/guangxi.png" alt="图片"></div>
+				<div class="name">山东馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/jiangsu.jpg" alt="图片"></div>
+				<div class="name">江苏馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/anhui.jpg" alt="图片"></div>
+				<div class="name">安徽馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/zhejiang.jpg" alt="图片"></div>
+				<div class="name">浙江馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+
+
+		</div>
+
+		<!-- 华南地区 -->
+		<div class="key-areas container">
+			<!-- 显示片区 -->
+			<div class="left-title" style="background-color: #ffa486;">
+				<!-- <img src="./img/home/huadong.jpg" alt=""> -->
+				<div class="upper">
+					华南地区
+				</div>
+			</div>
+			<!-- 地方馆 -->
+		
+			<div class="area">
+				<div class="img"><img src="./img/key_area/guangdong.jpg" alt="图片"></div>
+				<div class="name">广东馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/guangxi.png" alt="图片"></div>
+				<div class="name">广西馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/hainan.jpg" alt="图片"></div>
+				<div class="name">海南馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<!-- <div class="area">
+				<div class="img"><img src="./img/key_area/zhejiang.jpg" alt="图片"></div>
+				<div class="name">浙江馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div> -->
+		
+		
+		</div>
+		
+		<!-- 西北地区 -->
+		<div class="key-areas container">
+			<!-- 显示片区 -->
+			<div class="left-title">
+				<img src="./img/home/xibei.jpg" alt="">
+				<div class="upper">
+					西北地区
+				</div>
+			</div>
+			<!-- 地方馆 -->
+
+			<div class="area">
+				<div class="img"><img src="./img/key_area/xinjiang.png" alt="图片"></div>
+				<div class="name">新疆馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/qinghai.png" alt="图片"></div>
+				<div class="name">青海馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/shanxi.png" alt="图片"></div>
+				<div class="name">陕西馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/gansu.png" alt="图片"></div>
+				<div class="name">甘肃馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+
+
+		</div>
+
+		<!-- 西南地区 -->
+		<div class="key-areas container">
+			<!-- 显示片区 -->
+			<div class="left-title">
+				<img src="./img/home/xinan.jpg" alt="">
+				<div class="upper">
+					西南地区
+				</div>
+			</div>
+			<!-- 地方馆 -->
+
+			<div class="area">
+				<div class="img"><img src="./img/key_area/sichuan.png" alt="图片"></div>
+				<div class="name">四川馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/chongqing.png" alt="图片"></div>
+				<div class="name">重庆馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/guizhou.png" alt="图片"></div>
+				<div class="name">贵州馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+			<div class="area">
+				<div class="img"><img src="./img/key_area/xizang.png" alt="图片"></div>
+				<div class="name">西藏馆</div>
+				<div class="disc">社会扶贫你我同行</div>
+			</div>
+
+
+		</div>
+
+		<!-- 排行榜 -->
+		<div class="rank container">
+			<!-- 大标题 -->
+			<div class="big-title">
+				<img src="./img/rank/bigtitle.png" alt="">
+				排行榜
+				<img src="./img/rank/bigtitle.png" alt="">
+			</div>
+			
+			<!-- 小标题 -->
+			<div class="small-title" id="smallTitleBar">
+				<div class="small-title-item"><span><a href="javascript:;">热销榜</a></span></div>
+				<div class="unfocus"><span><a href="javascript:;">好评榜</a></span></div>
+				<div class="unfocus"><span><a href="javascript:;">好货收藏榜</a></span></div>
+				<div class="unfocus"><span><a href="javascript:;">卖家销售榜</a></span></div>
+			</div>
+			
+			<!-- 榜内展示 -->
+			<div class="outer container">
+				<div class="sort-content" id="sortContent">
+					<!-- 热销榜 -->
+					<div class="sort-list container">
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/rice.jpg" ></div>
+							<div class="rank-box-text">
+								<div>大米</div>
+								<div>累计1234条评价</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+						
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/rice.jpg" ></div>
+							<div class="rank-box-text">
+								<div>大米</div>
+								<div>累计1234条评价</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+						
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/rice.jpg" ></div>
+							<div class="rank-box-text">
+								<div>大米</div>
+								<div>累计1234条评价</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+						
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/rice.jpg" ></div>
+							<div class="rank-box-text">
+								<div>大米</div>
+								<div>累计1234条评价</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+										
+					</div>
+					<!-- 好评榜 -->
+					<div class="sort-list container">
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/smallRice.jpg" ></div>
+							<div class="rank-box-text">
+								<div>小米</div>
+								<div>累计999条评价</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+						
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/smallRice.jpg" ></div>
+							<div class="rank-box-text">
+								<div>小米</div>
+								<div>累计1234条评价</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+						
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/smallRice.jpg" ></div>
+							<div class="rank-box-text">
+								<div>小米</div>
+								<div>累计1234条评价</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+						
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/smallRice.jpg" ></div>
+							<div class="rank-box-text">
+								<div>小米</div>
+								<div>累计1234条评价</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+										
+					</div>
+					<!-- 好货收藏榜 -->
+					<div class="sort-list container">
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/redDates.jpg" ></div>
+							<div class="rank-box-text">
+								<div>红枣</div>
+								<div>累计1234人收藏</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+						
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/rice.jpg" ></div>
+							<div class="rank-box-text">
+								<div>大米</div>
+								<div>累计1234条评价</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+						
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/redDates.jpg" ></div>
+							<div class="rank-box-text">
+								<div>大米</div>
+								<div>累计1234条评价</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+						
+						<div class="sort-item">
+							<div class="rank-box-icon"><img src="./img/rank/first.png" alt=""></div>
+							<div class="bg-img"><img src="img/rank/bg.png" ></div>
+							<div class="rank-img"><img src="img/rank/rice.jpg" ></div>
+							<div class="rank-box-text">
+								<div>大米</div>
+								<div>累计1234条评价</div>
+								<div>近一个月售出100%好评率</div>
+							</div>
+						</div>
+										
+					</div>
+					<!-- 卖家销售榜 -->
+					<div class="sort-list container">
+						<div class="sale-sort-item">
+							<div class="top-title">1.河南黄国梁业股</div>
+							<div class="bottom">
+								<div class="item-title">销售金额</div>
+								<div class="item-content price">1235468元</div>
+								<div class="item-title">公司名称</div>
+								<div class="item-content">河南黄国粮业股份有限公司</div>
+								<div class="item-title">服务认证</div>
+								<div class="item-content">已认证</div>	
+								<div class="more" ><a href="javascript:;" style="color: #E35114;">查看详情</a></div>
+							</div>
+							
+						</div>
+						
+						<div class="sale-sort-item">
+							<div class="top-title">1.河南黄国梁业股</div>
+							<div class="bottom">
+								<div class="item-title">销售金额</div>
+								<div class="item-content price">1235468元</div>
+								<div class="item-title">公司名称</div>
+								<div class="item-content">河南黄国粮业股份有限公司</div>
+								<div class="item-title">服务认证</div>
+								<div class="item-content">已认证</div>	
+								<div class="more" ><a href="javascript:;" style="color: #E35114;">查看详情</a></div>
+							</div>
+							
+						</div>
+						
+						<div class="sale-sort-item">
+							<div class="top-title">1.河南黄国梁业股</div>
+							<div class="bottom">
+								<div class="item-title">销售金额</div>
+								<div class="item-content price">1235468元</div>
+								<div class="item-title">公司名称</div>
+								<div class="item-content">河南黄国粮业股份有限公司</div>
+								<div class="item-title">服务认证</div>
+								<div class="item-content">已认证</div>	
+								<div class="more" ><a href="javascript:;" style="color: #E35114;">查看详情</a></div>
+							</div>
+							
+						</div>
+						
+						<div class="sale-sort-item">
+							<div class="top-title">1.河南黄国梁业股</div>
+							<div class="bottom">
+								<div class="item-title">销售金额</div>
+								<div class="item-content price">1235468元</div>
+								<div class="item-title">公司名称</div>
+								<div class="item-content">河南黄国粮业股份有限公司</div>
+								<div class="item-title">服务认证</div>
+								<div class="item-content">已认证</div>	
+								<div class="more" ><a href="javascript:;" style="color: #E35114;">查看详情</a></div>
+							</div>
+							
+						</div>
+						
+									
+					</div>
+				</div>	
+					
+			</div>	
+		</div>
+			
+		
+		
+		
+		<!-- 页脚 -->
+		<div class="footer no-mp">
+			<div class="foot_link">
+				<a href="#">关于我们</a>
+				<span>|</span>
+				<a href="#">联系我们</a>
+				<span>|</span>
+				<a href="#">招聘人才</a>
+				<span>|</span>
+				<a href="#">友情链接</a>		
+			</div>
+			<p>CopyRight © 2016 北京天天扶贫信息技术有限公司 All Rights Reserved</p>
+			<p>电话：010-****888    京ICP备*******8号</p>
+		</div>
+		
+	</body>
+</html>
