@@ -60,18 +60,18 @@
 						<form action="">
 							<div class="form-item">
 								<label>用户名：</label>
-								<input type="text">	
+								<input type="text" id="name">	
 							</div>
 							<div class="form-item">
 								<label>绑定手机：</label>
-								<input type="text">	
+								<input type="text" id="phone">	
 							</div>
 							<div class="form-item address">
 								<label>详细地址：</label>
-								<input type="text">	
+								<input type="text" id="address">	
 							</div>
 							
-							<input type="submit" name="" value="保存" class="info_submit">
+							<input type="submit" name="" value="保存" class="info_submit" onclick="location = 'user_center_info.html'">
 						</form>
 					</div>
 				</div>
@@ -92,5 +92,46 @@
 			<p>电话：010-****888    京ICP备*******8号</p>
 		</div>
 		
+		<script src="js/jquery-3.6.0.js"></script>
+		<script src="js/jquery.params.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				getData();
+				changeData();
+				
+				
+				$(".info_submit").click(function(){
+					localStorage.setItem("name",$("#name").attr("value"));
+					localStorage.setItem("phone",$("#phone").attr("value"));
+					localStorage.setItem("address",$("#address").attr("value"));	
+					
+				});
+			})
+			//实时监听数据变化并修改属性值
+			function changeData(){
+					$("#name").blur(function(){
+						$("#name").attr("value", document.getElementById("name").value);
+					})
+					$("#phone").blur(function(){
+						$("#phone").attr("value", document.getElementById("phone").value);
+					});
+					$("#address").blur(function(){
+						$("#address").attr("value", document.getElementById("address").value);
+					});	
+				}
+				
+			function getData(){
+				var name = $.query.get("name");
+				var phone = $.query.get("phone");
+				var address = $.query.get("address");
+				
+				console.log(name);
+				$("#name").attr("value",name);
+				$("#phone").attr("value",phone);
+				$("#address").attr("value",address);
+				
+			}
+			
+			</script>
 	</body>
 </html>

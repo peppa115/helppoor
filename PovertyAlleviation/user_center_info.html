@@ -46,8 +46,8 @@
 		<div class="center-mesg container">
 			<div class="left-content">
 				<ul>
-					<li>个人信息</li>
-					<li>我的订单</li>
+					<li><a href="user_center_info.html" class="active">个人信息</a></li>
+					<li><a href="user_order_record.html">我的订单</a></li>
 					<li>我的收藏</li>
 					<li>收货地址</li>
 				</ul>
@@ -57,9 +57,9 @@
 				<div class="user-info">
 					<img src="img/user/tx.png" alt="">
 					<ul>
-						<li>用户名 ： 123456789</li>
-						<li>绑定手机：111111111</li>
-						<li>我的地址：北京市昌平区啦啦啦啦</li>
+						<li>用户名 ： <span id="name">123456789</span></li>
+						<li>绑定手机：<span id="phone">111111111</span></li>
+						<li class="address">我的地址：<span id="address">北京市昌平区北京市昌平区啦啦啦啦</span></li>
 					</ul>
 					<ul>
 						<li>用户类型 ： 个人用户</li>
@@ -67,7 +67,7 @@
 					</ul>
 					<div class="edit">
 						<img src="img/icon/edit.png" alt="">
-						<a href="">编辑资料</a>
+						<a href="edit_info.html" id="editBtn">编辑资料</a>
 						</div>
 				</div>
 				
@@ -135,5 +135,22 @@
 			<p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
 			<p>电话：010-****888    京ICP备*******8号</p>
 		</div>
+				
+		<!-- <script src="js/jquery.params.js"></script> -->
+		<script src="js/jquery-3.6.0.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				name = $("#name").text();
+				//name = getElementById("name").innerHTML;
+				phone = $("#phone").text();
+				address = $("#address").text();
+				let editBtn = $("#editBtn").attr("href","edit_info.html?name="+name+"&phone="+phone+"&address="+address);
+			
+				document.getElementById("name").innerHTML = 
+				localStorage.getItem("name")?localStorage.getItem("name"): $("#name").text();
+				
+			
+			})
+		</script>
 	</body>
 </html>

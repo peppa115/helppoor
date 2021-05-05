@@ -720,6 +720,8 @@ input{
 .product-item .product-desc{
 	font-size: 13px;
 	margin-top: 10px;
+	width: 80%;
+	margin-left: 10%;
 }
 
 .header{
@@ -920,7 +922,7 @@ input{
 	padding-top: 31px;
 }
 
-.right-bar .btn{
+.right-bar .btn {
 	background: #e35114;
 	color: #fff;
 	width: 74px;
@@ -929,6 +931,9 @@ input{
 	line-height: 30px;
 	border-radius: 3px;
 	margin-top: 10px;
+}
+.right-bar .btn a{
+	color: #fff;
 }
 
 /* 购物车 */
@@ -1085,12 +1090,12 @@ background-color:#E35114;color:#fff;font-size:16px;display:block;float:right;tex
 
 .detail_tab{
 	height:35px;
-	border-bottom:1px solid #37ab40
+	border-bottom:1px solid #E35114
 }
 
 .detail_tab li{height:34px;line-height:34px;padding:0 30px;font-size:14px;color:#333333;float:left;border:1px solid #e8e8e8;border-bottom:0px;cursor:pointer;background-color:#faf8f8}
 
-.detail_tab li.active{border-top:2px solid #37ab40;position:relative;background-color:#fff;border-left:1px solid #37ab40;border-right:1px solid #37ab40;top:-1px;height:35px;}
+.detail_tab li.active{border-top:2px solid #E35114;position:relative;background-color:#fff;border-left:1px solid #E35114;border-right:1px solid #E35114;top:-1px;height:35px;}
 
 .tab_content dt{margin-top:10px;font-size:16px;color:#044d39}
 .tab_content dd{line-height:24px;margin-top:5px;}
@@ -1101,7 +1106,7 @@ background-color:#E35114;color:#fff;font-size:16px;display:block;float:right;tex
 
 .new_goods{
 	border:1px solid #ededed;
-	border-top:2px solid #37ab40;
+	border-top:2px solid #E35114;
 	padding-bottom:10px;
 }
 
@@ -1122,7 +1127,7 @@ background-color:#E35114;color:#fff;font-size:16px;display:block;float:right;tex
 .breadcrumb{
 	width:1100px;height:40px;margin:0 auto;
 }
-.breadcrumb a{line-height:40px;color:#37ab40}
+.breadcrumb a{line-height:40px;color:#E35114}
 .breadcrumb a:hover{color:#ff8800}
 .breadcrumb span{line-height:40px;color:#666;padding:0 5px;}
 
@@ -1147,23 +1152,22 @@ li{
 	display: none;
 	position: fixed;
 	bottom: 120px;
-	right: 145px;
+	right: 8%;
 	z-index: 10;
 	color: #FFFFFF;
 	cursor: pointer;
-	border-radius: 5px;
-	border: 2px solid #dadada;
 }
 
 .return-top img{
 	width: 30px;
 	height: 30px;
 	padding: 15px 15px 10px 15px;
-	
+	border: 2px solid #dadada;
+	border-radius: 5px;
 }
 
-.return-top : hover{
-	background-color: #535353;
+.return-top :hover{
+	background-color: #dadada;
 }
 
 /* 用户中心-个人信息 */
@@ -1184,11 +1188,15 @@ li{
 	
 }
 
- .left-content ul : hover{
+ .left-content a:hover{
 	cursor: hand;
 	color: #E35114;
 	
 }
+
+ .left-content .active{
+	 color: #E35114;
+ }
 
 
 .boxline{
@@ -1259,8 +1267,15 @@ li{
 .center-mesg .right-content li{
 	/* height: 50px; */
 	line-height: 50px;
-	
-	
+}
+
+.center-mesg .right-content .address{
+	line-height: 25px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+.center-mesg .right-content .address input{
+	height: 100px;
 }
 
 .goods_type_list{
@@ -1422,6 +1437,7 @@ li{
 	height: 30px;
 	width: 200px;
 	border-radius: 3px;
+	padding: 0 10px;
 	
 }
 

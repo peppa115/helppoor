@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
 		<script type="text/javascript">
 			window.onload = function(){
+				// 返回顶部
 				window.onscroll = function(){scrollFunction()};
 				function scrollFunction(){
 					if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20){
@@ -53,6 +54,7 @@
 			</div>
 		</div>
 		<!-- 商品信息 -->
+		
 		<div class="goods_detail_con container">
 			<div class="goods_detail_pic fl"><img src="img/product/shanxi3/greentea.jpg"></div>
 		
@@ -60,21 +62,21 @@
 				<h3>大兴大棚草莓</h3>
 				<p>草莓浆果柔软多汁，味美爽口，适合速冻保鲜贮藏。草莓速冻后，可以保持原有的色、香、味，既便于贮藏，又便于外销。</p>
 				<div class="prize_bar">
-					<span class="show_pirze">¥<em>16.80</em></span>
+					<span class="show_pirze">¥<em id="price">16.80</em></span>
 					<span class="show_unit">单  位：500g</span>
 				</div>
 				<div class="goods_num clearfix">
 					<div class="num_name fl">数 量：</div>
 					<div class="num_add fl">
-						<a href="javascript:;" class="add fr">+</a>
+						<a href="javascript:;" class="add fr" id="add">+</a>
 						<input type="text" class="num_show fl" value="1">
-						<a href="javascript:;" class="minus fr">-</a>	
+						<a href="javascript:;" class="minus fr" id="sub">-</a>	
 					</div> 
 				</div>
-				<div class="total">总价：<em>16.80元</em></div>
+				<div class="total">总价：<em id="total">16.80元</em></div>
 				<div class="operate_btn">
-					<a href="javascript:;" class="buy_btn">立即购买</a>
-					<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>				
+					<a href="placeOrder.html" class="buy_btn">立即购买</a>
+					<a href="shoppingCart.html" class="add_cart" id="add_cart">加入购物车</a>				
 				</div>
 			</div>
 		</div>
@@ -141,12 +143,33 @@
 			<p>CopyRight © 2016 北京天天扶贫信息技术有限公司 All Rights Reserved</p>
 			<p>电话：010-****888    京ICP备*******8号</p>
 		</div>
-		
+		<script src="js/jquery-3.6.0.js"></script>
 		<script type="text/javascript">
 			function returnTop(){
 				document.body.scrollTop = 0;
 				document.documentElement.scrollTop = 0;
 			}
+		
+		$("#add").click(function(){
+			document.getElementsByClassName("num_show")[0].value++;
+			calcTotal();
+		})
+		$("#sub").click(function(){
+			let num = document.getElementsByClassName("num_show")[0].value
+			if(num > 1){
+				num--;
+			}
+			document.getElementsByClassName("num_show")[0].value = num;
+			calcTotal()
+		})	
+		function calcTotal(){
+			let total = document.getElementById("price").innerHTML * 
+			document.getElementsByClassName("num_show")[0].value;
+			total = total.toFixed(2);
+			
+			document.getElementById("total").innerHTML = total + "元";
+			
+		}
 		</script>
 		
 	</body>
