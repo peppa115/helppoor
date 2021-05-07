@@ -4,6 +4,48 @@
 		<meta charset="utf-8">
 		<title>商品细节</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+		<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+		<script type="text/javascript" src="js/tools.js"></script>
+		<script>
+			$(document).ready(function(){
+				var itemArr = document.getElementById("item-arr");
+				var len = itemArr.getElementsByClassName("item");
+				const moveLen = len.length > 4 ? len.length-4 : 0;
+				var flag = moveLen;
+				// 左边箭头移动---
+				$("#left").click(function(){
+					
+					oldLeft = parseInt(getComputedStyle(itemArr,null)["left"]);
+						
+					if(flag > 0){
+						let target = oldLeft - 50;
+						move(itemArr,"left", target ,20,function(){});
+						flag--;
+						console.log(moveLen)
+					}
+					
+				})
+				$("#right").click(function(){
+					oldLeft = parseInt(getComputedStyle(itemArr,null)["left"]);
+					console.log(moveLen);
+					if(flag < moveLen){
+						let target = oldLeft + 50;
+						move(itemArr,"left",target,25,function(){});
+						flag++;
+					}
+					
+				})
+				
+				// 图片响应展示，鼠标移入显示大图
+				$(".item-arr").find(".item").each(function(){
+					$(this).mouseover(function(){
+						$("#big-img").attr("src", $(this).find("img").attr("src")) ;
+					})
+				})
+			
+			
+			});
+		</script>
 	</head>
 	<body style="background-color: #FFFFFF;">
 		<!-- 顶部导航栏 -->
@@ -45,15 +87,20 @@
 		<div class="container">
 			<div class="header">
 				<div class="header-left">
-					<div class="img" ><img src="./img/product/shanxi3/greentea.jpg" alt=""></div>
+					<div class="img" ><img id="big-img" src="./img/product/shanxi3/greentea.jpg" alt=""></div>
+					<span id="left"><img src="img/icon/arrow4-left.png" alt="" ></span>
 					<div class="slide-img">
-						<span><img src="img/icon/arrow4-left.png" alt=""></span>
-						<div class="item"><img src="img/product/shanxi3/greentea.jpg" alt=""></div>
-						<div class="item"><img src="img/product/shanxi3/greentea1.jpg" alt=""></div>
-						<div class="item"><img src="img/product/shanxi3/greentea.jpg" alt=""></div>
-						<div class="item"><img src="img/product/shanxi3/greentea1.jpg" alt=""></div>
-						<span><img src="img/icon/arrow4-right.png" alt=""></span>
+						<div class="item-arr" id="item-arr" >
+							<div class="item"><img src="img/product/shanxi3/greentea.jpg" alt=""></div>
+							<div class="item"><img src="img/product/shanxi3/greentea1.jpg" alt=""></div>
+							<div class="item"><img src="img/product/guizhou/hongcha.jpg" alt=""></div>
+							<div class="item"><img src="img/product/shanxi3/greentea1.jpg" alt=""></div>
+							<div class="item"><img src="img/product/guizhou/hongcha.jpg" alt=""></div>
+							<div class="item"><img src="img/product/shanxi3/greentea1.jpg" alt=""></div>
+						</div>
 					</div>
+					<span id="right"><img src="img/icon/arrow4-right.png" alt="" ></span>
+					
 				</div>
 				<div class="header-right">
 					<div class="title" style="">绿茶</div>

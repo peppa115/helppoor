@@ -24,10 +24,11 @@
 					}
 					sTitleArr[index].parentNode.classList.add("small-title-item");
 				}
-				//广播栏自动滚动播放
 				
+				
+				//广播栏自动滚动播放
 				function move(obj, attr, target, speed, callback) {
-					clearInterval(obj.timer);
+					//clearInterval(obj.timer);
 					var current = parseInt(getStyle(obj, attr));
 					if(current > target) {
 						speed = -speed;
@@ -39,16 +40,16 @@
 							newValue = target;
 						}
 						obj.style[attr] = newValue + "px";
+						
 						if(newValue == target) {
 							clearInterval(obj.timer);
 							callback && callback();
 							
 						}
-					}, 50);
+					}, 100);
 				}
-				
+				//获取属性
 				function getStyle(obj, name) {
-				
 					if(window.getComputedStyle) {
 						//正常浏览器的方式，具有getComputedStyle()方法
 						return getComputedStyle(obj, null)[name];
@@ -56,25 +57,26 @@
 						//IE8的方式，没有getComputedStyle()方法
 						return obj.currentStyle[name];
 					}
-				
 				}
 				
-				let broList = document.getElementById("broList");
 				
+				
+				let broUl = document.getElementById("broUl");
+				let broList = broUl.getElementsByTagName("li");
+				const len = broList.length;
 				
 				function autoChange(){
-					let len = broList.length;
-					var index = 0;
-					
+					let index = 0;	
 					timer = setInterval(function(){
-						
 						index = ++index % len;
-						console.log(len);
-						move(broList,"top",-index * 60,-5,function(){
-							
+						move(broUl,"top",-index * 60,5,function(){
+							if(index >= len-1 ){
+								index = 0;
+								broUl.style.top = 0 + "px";
+							}
 						});
 						
-					},2500)	
+					},4000)	
 				}
 				autoChange();
 			}
@@ -88,13 +90,13 @@
 				<!-- 左边导航栏 -->
 				<div class="top-bar-left">
 					<div class="toplogin-logo"><img src="./img/toplogin.png"></div>
-					<div class="login top-bar-item ">请登录</div>
-					<div class="register top-bar-item">注册</div>
+					<div class="login top-bar-item "><a href="login.html">请登录</a></div>
+					<div class="register top-bar-item"><a href="register.html">注册</a></div>
 				</div>
 				<!-- 右边导航栏 -->
 				<div class="top-bar-right">
-					<div class="home top-bar-item">首页</div>
-					<div class="shopCart top-bar-item">购物车</div>
+					<div class="home top-bar-item"><a href="index.html">首页</a></div>
+					<div class="shopCart top-bar-item"><a href="shoppingCart.html">购物车</a></div>
 				</div>
 			</div>
 		</div>
@@ -150,7 +152,7 @@
 		<!-- 广播小栏 -->
 		<div class="broadcast container">
 			<img src="./img/home/broadcast.png" alt="">
-			<ul class="broadcast-list" id="broList">
+			<ul class="broadcast-list" id="broUl">
 				<li style="list-style: none; " class="slide-item">
 					<a class="slide-item">
 						<span class="title">《全国扶贫产品目录》（第十四批）公示</span>
@@ -181,6 +183,128 @@
 						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
 					</a>
 				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第十一批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第十批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第九批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第八批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第七批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第六批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第五批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第四批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第三批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第二批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第一批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				<li style="list-style: none; " class="slide-item">
+					<a class="slide-item">
+						<span class="title">《全国扶贫产品目录》（第十四批）公示</span>
+						为深入贯彻落实习近平总书记“开展消费扶贫行动”的指示精神，
+						根据原国务院扶贫办等七部门《关于开展消费扶贫行动的通知》
+						和原国务院扶贫办《关于做细做实消费扶贫行动有关事宜的通知》，
+						经中西部贫困地区扶贫部门认定，
+						原国务院扶贫办汇总形成了第十四批全国扶贫产品目录，现予公示
+					</a>
+				</li>
+				
+				
 			</ul>
 			<div class="more">更多</div>
 
@@ -196,7 +320,7 @@
 				</div>
 			</div>
 			<!-- 地方馆 -->
-			<div class="area">
+			<div class="area" onclick="location='area_detail.html'">
 				<div class="img"><img src="./img/key_area/hebei.png" alt="图片"></div>
 				<div class="name">河北馆</div>
 				<div class="disc">社会扶贫你我同行</div>
